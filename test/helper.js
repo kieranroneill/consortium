@@ -1,19 +1,42 @@
 'use strict';
 
-const chai = require('chai');
-const path = require('path');
+import { expect } from 'chai';
+import { mount, shallow } from 'enzyme';
+import { jsdom } from 'jsdom';
+import path from 'path';
+import React from 'react';
+import { Application } from 'spectron';
+import { assert } from 'sinon';
 
-const spectron = require('spectron');
-const sinon = require('chai');
-
-const config = require('../config/default.json');
+import config from '../config/default.json';
 
 const appPath = path.join(__dirname, '..'); // Path to main.js.
 const electronPath = path.join(__dirname, '..', 'node_modules', '.bin', 'electron');
 
-global.Application = spectron.Application;
-global.appPath = appPath;
-global.assert = sinon.assert;
+// General globals.
+global.assert = assert;
 global.config = config;
+global.expect = expect;
+
+// Electron globals.
+global.Application = Application;
+global.appPath = appPath;
 global.electronPath = electronPath;
-global.expect = chai.expect;
+
+// Client globals.
+global.mount = mount;
+global.React = React;
+global.shallow = shallow;
+global.document = jsdom('<!doctype html><html><body></body></html>');
+global.window = document.defaultView;
+
+Object.keys(document.defaultView)
+    .forEach((property) => {
+        if (typeof global[property] === 'undefined') {
+            global[property] = document.defaultView[property];
+        }
+    });
+
+global.navigator = {
+    userAgent: 'node.js'
+};

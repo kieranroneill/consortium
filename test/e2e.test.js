@@ -1,24 +1,24 @@
 'use strict';
 
 describe('application launch', () => {
-    before(() => {
+    before(function() {
         this.app = new Application({
             path: electronPath,
             args: [ appPath ]
         });
     });
 
-    beforeEach(() => {
+    beforeEach(function() {
         return this.app.start();
     });
 
-    afterEach(() => {
+    afterEach(function() {
         if (this.app && this.app.isRunning()) {
             return this.app.stop();
         }
     });
 
-    it('should open a window', done => {
+    it('should open a window', function(done) {
         this.app.client
             .getWindowCount()
             .then(count => {
@@ -28,7 +28,7 @@ describe('application launch', () => {
             });
     });
 
-    it('should be the correct title', done => {
+    it('should be the correct title', function(done) {
         this.app.client
             .getTitle()
             .then(title => {
