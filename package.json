@@ -11,6 +11,10 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "babel": "babel",
+    "eslint": "eslint",
+    "istanbul": "istanbul",
+    "lint": "eslint main.js app/src/**/*.js* test/**/*.js*",
+    "mocha": "mocha",
     "start": "electron .",
     "test": "mocha ./test/**/*.test.js ./app/src/**/*.spec.js",
     "webpack": "webpack"
@@ -28,9 +32,12 @@
     "webpack": "^1.14.0"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "enzyme": "^2.7.0",
+    "eslint": "^3.12.2",
+    "eslint-plugin-react": "^6.8.0",
     "istanbul": "^0.4.5",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",

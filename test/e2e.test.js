@@ -38,4 +38,4 @@ describe('application launch', () => {
                 done();
             });
     });
-})
+});
