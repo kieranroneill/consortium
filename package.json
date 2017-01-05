@@ -11,6 +11,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "babel": "babel",
+    "start": "electron .",
     "test": "echo \"Nope, nothing to see here\"",
     "webpack": "webpack"
   },
