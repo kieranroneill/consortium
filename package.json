@@ -12,7 +12,7 @@
   "scripts": {
     "babel": "babel",
     "start": "electron .",
-    "test": "echo \"Nope, nothing to see here\"",
+    "test": "mocha ./test/**/*.test.js",
     "webpack": "webpack"
   },
   "dependencies": {
@@ -25,5 +25,12 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "spectron": "^3.4.1"
   }
 }
