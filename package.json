@@ -17,7 +17,6 @@
   "scripts": {
     "babel": "babel",
     "build": "webpack",
-    "code-analysis": "plato -r -t consortium -d analysis main.js app/src/ -e .eslintrc",
     "clean": "rm -rf node_modules/",
     "dist": "build",
     "eslint": "eslint",
@@ -47,7 +46,6 @@
     "favicons-webpack-plugin": "0.0.7",
     "html-webpack-plugin": "^2.26.0",
     "node-sass": "^4.1.1",
-    "plato": "^1.7.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "sass-loader": "^4.1.1",

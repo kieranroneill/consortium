@@ -3,7 +3,7 @@ machine:
     Europe/London
 
   node:
-    version: 4.4.5
+    version: 6.9.4
 
 dependencies:
   override:
@@ -13,9 +13,6 @@ dependencies:
     - npm run build
 
 test:
-  pre:
-    - npm run code-analysis
-
   override:
     - npm run lint
     - npm run test:
