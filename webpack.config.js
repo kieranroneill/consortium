@@ -3,12 +3,22 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const HtmlwebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 const appPath = path.join(__dirname, 'app');
 
 module.exports = {
+    devServer: {
+        contentBase: path.resolve(appPath, 'dist'),
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        colors: true,
+        port: 1337
+    },
     devtool: 'source-map',
     entry: [
         path.resolve(appPath, 'src', 'index.jsx'),
@@ -21,7 +31,7 @@ module.exports = {
         loaders: [
             {
                 test: /.jsx?$/,
-                loader: 'babel-loader',
+                loaders: ['react-hot', 'babel-loader'],
                 exclude: /node_modules/
             },
             {
@@ -45,9 +55,10 @@ module.exports = {
         //     title: 'Consortium'
         // }),
         new ExtractTextPlugin('styles.css'),
-        new HtmlwebpackPlugin({
+        new HtmlWebpackPlugin({
             title: 'Consortium',
             minify: {}
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 };
