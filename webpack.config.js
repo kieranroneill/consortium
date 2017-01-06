@@ -1,24 +1,42 @@
 'use strict';
 
-const HtmlwebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
-const ROOT_PATH = path.resolve(__dirname);
+const appPath = path.join(__dirname, 'app');
 
 module.exports = {
+    devServer: {
+        contentBase: path.resolve(appPath, 'dist'),
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        colors: true,
+        port: 1337
+    },
+    devtool: 'source-map',
     entry: [
-        path.resolve(ROOT_PATH, 'app/src/index.jsx'),
+        path.resolve(appPath, 'src', 'index.jsx'),
     ],
     output: {
-        path: path.resolve(ROOT_PATH, 'app/dist'),
+        path: path.resolve(appPath, 'dist'),
         filename: 'bundle.js'
     },
     module: {
         loaders: [
             {
                 test: /.jsx?$/,
-                loader: 'babel-loader',
+                loaders: ['react-hot', 'babel-loader'],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('css!sass')
             }
         ]
     },
@@ -26,9 +44,21 @@ module.exports = {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
-        new HtmlwebpackPlugin({
+        // new CopyWebpackPlugin([
+        //     {
+        //         from: path.resolve(appPath, 'src', 'assets'),
+        //         to: path.resolve(appPath, 'dist', 'assets')
+        //     }
+        // ]),
+        // new FaviconsWebpackPlugin({
+        //     logo: path.resolve(appPath, 'src', 'favicon', 'favicon.png'),
+        //     title: 'Consortium'
+        // }),
+        new ExtractTextPlugin('styles.css'),
+        new HtmlWebpackPlugin({
             title: 'Consortium',
             minify: {}
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 };
