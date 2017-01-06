@@ -19,7 +19,7 @@
     "build": "webpack",
     "code-analysis": "plato -r -t consortium -d analysis main.js app/src/ -e .eslintrc",
     "clean": "rm -rf node_modules/",
-    "dist": "build -mwl",
+    "dist": "build",
     "eslint": "eslint",
     "istanbul": "istanbul",
     "lint": "eslint main.js app/src/**/*.js* test/**/*.js*",
@@ -81,5 +81,8 @@
     "win": {
       "iconUrl": "(windows-only) https link to icon"
     }
+  },
+  "directories": {
+    "output": "packages"
   }
 }

@@ -59,6 +59,7 @@ test-results.xml
 
 ### Build
 **dist/
+**packages/
 
 ### Dependencies
 **node_modules/
