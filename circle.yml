@@ -21,8 +21,6 @@ test:
           MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
 
   post:
-    # Save code complexity as an artifact.
-    - mkdir -p $CIRCLE_ARTIFACTS/analysis && cp -r ./analysis/* $CIRCLE_ARTIFACTS/analysis
     # Save coverage reports as an artifact.
     - mkdir -p $CIRCLE_ARTIFACTS/coverage && cp -r ./coverage/* $CIRCLE_ARTIFACTS/coverage
     # Deploy coverage reports to Codecov.
